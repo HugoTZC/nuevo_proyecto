@@ -41,11 +41,11 @@ const Photos: React.FC = () => {
   };
 
   return (
-    <section id="fotos" className="py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative">
+    <section id="fotos" className="py-16 md:py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Fotos del Lugar</h2>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-400 mb-4">Fotos del Lugar</h2>
           <p className="text-xl text-gray-400">Disponibles en la pagina de la reservacion.</p>
         </div>
 

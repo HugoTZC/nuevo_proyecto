@@ -53,13 +53,19 @@ const Navbar = () => {
 
             {/* Mobile Menu Dropdown */}
             {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 w-full glass border-t border-slate-700/50 animate-fade-in">
-                    <div className="flex flex-col py-4">
+                <div className="md:hidden fixed inset-0 bg-slate-900/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center animate-fade-in">
+                    <button
+                        className="absolute top-6 right-6 text-white text-4xl focus:outline-none"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        &times;
+                    </button>
+                    <div className="flex flex-col gap-8 text-center">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="px-6 py-3 text-sm font-bold text-gray-300 hover:bg-white/5 hover:text-amber-400 transition-colors uppercase tracking-widest"
+                                className="text-2xl font-bold text-gray-300 hover:text-amber-400 transition-colors uppercase tracking-widest"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {link.name}

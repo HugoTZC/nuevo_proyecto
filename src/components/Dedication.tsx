@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Dedication: React.FC = () => {
     return (
-        <section className="py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative overflow-hidden">
+        <section className="py-16 md:py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
 
             <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -21,7 +21,7 @@ const Dedication: React.FC = () => {
                 </div>
 
                 <div className="space-y-6 animate-fade-in">
-                    <p className="text-2xl md:text-4xl font-serif italic text-amber-100/90 leading-relaxed">
+                    <p className="text-xl md:text-4xl font-serif italic text-amber-100/90 leading-relaxed">
                         "Amigos mios, los queremos mucho y queremos celebrar este nuevo año que viene con ustedes, cantando, bailando y pisteando"
                     </p>
                     <p className="text-lg text-amber-400 font-bold tracking-widest uppercase mt-4">- Valery y Hugo Meza</p>

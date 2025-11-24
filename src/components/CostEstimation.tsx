@@ -62,11 +62,11 @@ const CostEstimation: React.FC = () => {
   }, []);
 
   return (
-    <section id="costo" className="py-24 px-6 md:px-12 bg-slate-800 text-gray-100 relative">
+    <section id="costo" className="py-16 md:py-24 px-6 md:px-12 bg-slate-800 text-gray-100 relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Y de como va a ser el chingazo?</h2>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-400 mb-4">Y de como va a ser el chingazo?</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Desglose claro de los costos esenciales del viaje.
           </p>
@@ -113,8 +113,11 @@ const CostEstimation: React.FC = () => {
                 <input
                   type="number"
                   id="numCars"
-                  value={numCars}
-                  onChange={(e) => setNumCars(Math.max(0, parseInt(e.target.value) || 0))}
+                  value={numCars.toString()}
+                  onChange={(e) => {
+                    const val = parseInt(e.target.value);
+                    setNumCars(isNaN(val) ? 0 : val);
+                  }}
                   className="w-full bg-transparent border-none p-0 text-xl font-bold text-white focus:ring-0"
                   min="0"
                 />
@@ -124,8 +127,11 @@ const CostEstimation: React.FC = () => {
                 <input
                   type="number"
                   id="confirmedPeople"
-                  value={confirmedPeople}
-                  onChange={(e) => setConfirmedPeople(Math.max(1, parseInt(e.target.value) || 1))}
+                  value={confirmedPeople || ''}
+                  onChange={(e) => {
+                    const val = parseInt(e.target.value);
+                    setConfirmedPeople(isNaN(val) ? 0 : val);
+                  }}
                   className="w-full bg-transparent border-none p-0 text-xl font-bold text-white focus:ring-0"
                   min="1"
                 />

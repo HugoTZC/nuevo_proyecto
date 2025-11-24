@@ -3,12 +3,12 @@ import React from 'react';
 
 const Description: React.FC = () => {
   return (
-    <section id="descripcion" className="py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative">
+    <section id="descripcion" className="py-16 md:py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       <div className="max-w-7xl mx-auto text-center md:text-left">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
               Un Refugio <br /> <span className="text-amber-500">Rústico & Moderno</span>
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed mb-6">

@@ -58,17 +58,17 @@ const CarAvailability: React.FC = () => {
   const missingCars = Math.max(0, carsNeededMin - carsOffered); // Using the minimum cars needed for the alert
 
   return (
-    <section id="disponibilidad" className="py-24 px-6 md:px-12 bg-slate-800 text-gray-100 relative">
+    <section id="disponibilidad" className="py-16 md:py-24 px-6 md:px-12 bg-slate-800 text-gray-100 relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Estatus del Transporte</h2>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-400 mb-4">Estatus del Transporte</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Monitoreo en tiempo real de la logística del viaje.
           </p>
         </div>
 
-        <div className="glass p-8 md:p-12 rounded-2xl shadow-2xl border border-slate-700/50">
+        <div className="glass p-6 md:p-12 rounded-2xl shadow-2xl border border-slate-700/50">
           {loading ? (
             <div className="flex justify-center items-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-500"></div>
@@ -84,7 +84,7 @@ const CarAvailability: React.FC = () => {
                 <div className="bg-slate-900/50 p-8 rounded-2xl border border-blue-500/30 text-center relative overflow-hidden group hover:border-blue-500/50 transition-colors">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl -mr-12 -mt-12"></div>
                   <h3 className="text-lg font-bold text-blue-300 mb-2 uppercase tracking-wider">Personas Confirmadas</h3>
-                  <p className="text-6xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">{confirmedPeople}</p>
+                  <p className="text-5xl md:text-6xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">{confirmedPeople}</p>
                   <p className="text-blue-200/60 text-sm">Asistentes registrados</p>
                 </div>
 
@@ -92,7 +92,7 @@ const CarAvailability: React.FC = () => {
                 <div className="bg-slate-900/50 p-8 rounded-2xl border border-green-500/30 text-center relative overflow-hidden group hover:border-green-500/50 transition-colors">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/10 rounded-full blur-2xl -mr-12 -mt-12"></div>
                   <h3 className="text-lg font-bold text-green-300 mb-2 uppercase tracking-wider">Autos Disponibles</h3>
-                  <p className="text-6xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">{carsOffered}</p>
+                  <p className="text-5xl md:text-6xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">{carsOffered}</p>
                   <p className="text-green-200/60 text-sm">Vehículos voluntarios</p>
                 </div>
 
@@ -100,7 +100,7 @@ const CarAvailability: React.FC = () => {
                 <div className="bg-slate-900/50 p-8 rounded-2xl border border-purple-500/30 text-center relative overflow-hidden group hover:border-purple-500/50 transition-colors">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl -mr-12 -mt-12"></div>
                   <h3 className="text-lg font-bold text-purple-300 mb-2 uppercase tracking-wider">Capacidad Total</h3>
-                  <p className="text-6xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">{totalCapacity}</p>
+                  <p className="text-5xl md:text-6xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">{totalCapacity}</p>
                   <p className="text-purple-200/60 text-sm">Asientos disponibles</p>
                 </div>
               </div>

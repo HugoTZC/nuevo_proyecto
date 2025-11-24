@@ -81,11 +81,11 @@ const Activities: React.FC<ActivitiesProps> = ({ nombre, apellidos }) => {
   };
 
   return (
-    <section id="actividades" className="py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative">
+    <section id="actividades" className="py-16 md:py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Actividades disponibles en el lugar</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-400 mb-4">Actividades disponibles en el lugar</h2>
           <p className="text-xl text-gray-400">Seleccionar las actividades es opcional, solo es para estimacion del precio.</p>
         </div>
 

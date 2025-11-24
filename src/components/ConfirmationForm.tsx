@@ -52,11 +52,11 @@ const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ nombre, setNombre, 
   };
 
   return (
-    <section id="confirmacion" className="py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative">
+    <section id="confirmacion" className="py-16 md:py-24 px-6 md:px-12 bg-slate-900 text-gray-100 relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Confirma tu Asistencia</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-400 mb-4">Confirma tu Asistencia</h2>
           <p className="text-xl text-gray-400 mb-6">¡Nos encantaría que nos acompañes! Por favor llena tus datos.</p>
 
           <div className="inline-block bg-red-500/20 border border-red-500/50 rounded-lg px-6 py-3 animate-pulse">
@@ -67,9 +67,9 @@ const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ nombre, setNombre, 
           </div>
         </div>
 
-        <div className="glass p-10 rounded-2xl shadow-2xl border border-slate-700/50">
+        <div className="glass p-6 md:p-10 rounded-2xl shadow-2xl border border-slate-700/50">
           <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <div className="group">
                 <label htmlFor="nombre" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-amber-500 transition-colors">Nombre</label>
                 <input
@@ -98,8 +98,8 @@ const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ nombre, setNombre, 
 
             <div>
               <span className="block text-lg font-medium text-gray-300 mb-4">¿Asistirás al viaje?</span>
-              <div className="flex gap-8">
-                <label className="flex items-center cursor-pointer group">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+                <label className="flex items-center cursor-pointer group p-3 rounded-lg hover:bg-slate-800/50 transition-colors">
                   <div className="relative">
                     <input
                       type="radio"
@@ -116,7 +116,7 @@ const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ nombre, setNombre, 
                   <span className={`ml-3 text-lg ${va === 'si' ? 'text-white font-bold' : 'text-gray-400 group-hover:text-gray-200'}`}>¡Sí, cuenta conmigo!</span>
                 </label>
 
-                <label className="flex items-center cursor-pointer group">
+                <label className="flex items-center cursor-pointer group p-3 rounded-lg hover:bg-slate-800/50 transition-colors">
                   <div className="relative">
                     <input
                       type="radio"

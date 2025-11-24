@@ -4,11 +4,11 @@ import Image from 'next/image';
 
 const Directions: React.FC = () => {
   return (
-    <section id="ubicacion" className="py-24 px-6 md:px-12 bg-slate-800 text-gray-100 relative">
+    <section id="ubicacion" className="py-16 md:py-24 px-6 md:px-12 bg-slate-800 text-gray-100 relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Ubicación</h2>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-400 mb-4">Ubicación</h2>
           <p className="text-xl text-gray-300">Fácil acceso en el corazón de Creel.</p>
         </div>
 

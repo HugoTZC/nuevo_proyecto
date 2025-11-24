@@ -20,7 +20,7 @@ const amenitiesList = [
 
 const Amenities: React.FC = () => {
   return (
-    <section id="amenidades" className="py-24 px-6 md:px-12 bg-slate-800 relative overflow-hidden">
+    <section id="amenidades" className="py-16 md:py-24 px-6 md:px-12 bg-slate-800 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -29,8 +29,8 @@ const Amenities: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">La cabaña cuenta con las siguientes comodidades</h2>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-amber-400 mb-4">La cabaña cuenta con las siguientes comodidades</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">Todo lo que necesitamos para despreocuparnos y relajarnos en la Sierra Tarahumara.</p>
         </div>
 
