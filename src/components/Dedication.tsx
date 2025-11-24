@@ -22,9 +22,9 @@ const Dedication: React.FC = () => {
 
                 <div className="space-y-6 animate-fade-in">
                     <p className="text-2xl md:text-4xl font-serif italic text-amber-100/90 leading-relaxed">
-                        "Amigos mios, los queremos mucho y queremos este nuevo año que viene con ustedes celebrando y pisteando"
+                        "Amigos mios, los queremos mucho y queremos celebrar este nuevo año que viene con ustedes, cantando, bailando y pisteando"
                     </p>
-                    <p className="text-lg text-amber-400 font-bold tracking-widest uppercase mt-4">- Valey y Hugo Meza</p>
+                    <p className="text-lg text-amber-400 font-bold tracking-widest uppercase mt-4">- Valery y Hugo Meza</p>
                     <div className="w-24 h-1 bg-amber-500/30 mx-auto rounded-full mt-6"></div>
                 </div>
             </div>

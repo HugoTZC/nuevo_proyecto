@@ -57,7 +57,14 @@ const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ nombre, setNombre, 
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Confirma tu Asistencia</h2>
-          <p className="text-xl text-gray-400">¡Nos encantaría que nos acompañes! Por favor llena tus datos.</p>
+          <p className="text-xl text-gray-400 mb-6">¡Nos encantaría que nos acompañes! Por favor llena tus datos.</p>
+
+          <div className="inline-block bg-red-500/20 border border-red-500/50 rounded-lg px-6 py-3 animate-pulse">
+            <p className="text-red-200 font-bold text-lg">
+              ⚠️ Fecha límite para confirmar: <span className="text-white">6 de Diciembre</span>
+            </p>
+            <p className="text-red-300/80 text-sm mt-1">Para asegurar la reservación de las cabañas</p>
+          </div>
         </div>
 
         <div className="glass p-10 rounded-2xl shadow-2xl border border-slate-700/50">

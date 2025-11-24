@@ -29,8 +29,11 @@ const Cover: React.FC<CoverProps> = ({ onConfirmClick }) => {
         <h1 className="text-6xl md:text-8xl font-extrabold mb-6 animate-fade-in drop-shadow-2xl leading-tight">
           Cabaña <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">Gerónimo’s</span>
         </h1>
-        <p className="text-2xl md:text-3xl font-light mb-8 animate-fade-in delay-200 drop-shadow-lg text-gray-200 tracking-wide">
+        <p className="text-2xl md:text-3xl font-light mb-4 animate-fade-in delay-200 drop-shadow-lg text-gray-200 tracking-wide">
           Creel, Chihuahua &bull; 30 Dic - 2 Ene
+        </p>
+        <p className="text-red-300 font-bold mb-8 animate-fade-in delay-300 bg-red-900/40 px-4 py-1 rounded-full border border-red-500/30 backdrop-blur-sm">
+          ⚠️ Confirmar antes del 6 de Dic
         </p>
 
         <div className="flex flex-col md:flex-row gap-6 animate-fade-in delay-400">
