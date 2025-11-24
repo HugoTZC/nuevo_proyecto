@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 
 const CostEstimation: React.FC = () => {
   // Valores fijos para la calculadora
@@ -10,6 +11,7 @@ const CostEstimation: React.FC = () => {
 
   const [numCars, setNumCars] = useState<number>(1); // Default 1 car
   const [confirmedPeople, setConfirmedPeople] = useState<number>(1); // Default 1 person
+  const [loading, setLoading] = useState<boolean>(true);
 
   // Datos fijos del viaje
   const lodgingCostPerNight = 4500; // MXN
@@ -38,14 +40,31 @@ const CostEstimation: React.FC = () => {
   const refCostPerPerson = refTotalTripCost / refConfirmedPeople;
 
   useEffect(() => {
-    // Aquí podríamos intentar cargar datos iniciales de numCars y confirmedPeople de Supabase
-    // por ahora, son valores por defecto o editables.
+    const fetchData = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('confirmaciones')
+        .select('*')
+        .eq('va', true);
+
+      if (!error && data) {
+        const peopleCount = data.length;
+        const carsCount = data.filter(c => c.coche).length;
+
+        // Initialize with real data if available, otherwise keep defaults
+        if (peopleCount > 0) setConfirmedPeople(peopleCount);
+        if (carsCount > 0) setNumCars(carsCount);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
   }, []);
 
   return (
     <section id="costo" className="py-24 px-6 md:px-12 bg-slate-800 text-gray-100 relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Y de como va a ser el chingazo?</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
