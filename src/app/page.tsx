@@ -10,6 +10,7 @@ import CostEstimation from "@/components/CostEstimation";
 import ConfirmationForm from "@/components/ConfirmationForm";
 import CarAvailability from "@/components/CarAvailability"; // Importa el nuevo componente
 import Photos from "@/components/Photos";
+import Dedication from "@/components/Dedication";
 import Directions from "@/components/Directions";
 
 import Navbar from "@/components/Navbar";
@@ -58,6 +59,9 @@ export default function Home() {
 
       {/* Componente de Direcciones */}
       <Directions />
+
+      {/* Componente de Dedicatoria */}
+      <Dedication />
 
       <Footer />
     </main>
