@@ -31,7 +31,7 @@ const ConfirmationForm: React.FC<ConfirmationFormProps> = ({ nombre, setNombre, 
       nombre,
       apellidos,
       va: va === 'si',
-      coche: va === 'si' ? (coche === 'si') : null,
+      coche: va === 'si' ? (coche === 'si') : false,
     };
 
     const { data, error } = await supabase
