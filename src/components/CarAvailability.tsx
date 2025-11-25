@@ -30,7 +30,7 @@ const CarAvailability: React.FC = () => {
     const { data, error } = await supabase
       .from('confirmaciones')
       .select('*')
-      .eq('va', true); // Solo nos interesan los que confirmaron que SÍ van
+      .order('timestamp', { ascending: false });
 
     if (error) {
       console.error('Error al cargar confirmaciones:', error);
@@ -41,8 +41,11 @@ const CarAvailability: React.FC = () => {
     setLoading(false);
   };
 
-  const confirmedPeople = confirmations.length;
-  const carsOffered = confirmations.filter(c => c.coche).length;
+  const attendees = confirmations.filter(c => c.va);
+  const nonAttendees = confirmations.filter(c => !c.va);
+
+  const confirmedPeople = attendees.length;
+  const carsOffered = attendees.filter(c => c.coche).length;
 
   const minCarCapacityTotal = carsOffered * CAR_CAPACITY_MIN;
   const maxCarCapacityTotal = carsOffered * CAR_CAPACITY_MAX;
@@ -78,7 +81,7 @@ const CarAvailability: React.FC = () => {
               <p>Error al cargar datos: {error}</p>
             </div>
           ) : (
-            <div className="space-y-8">
+            <div className="space-y-12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Personas Confirmadas */}
                 <div className="bg-slate-900/50 p-8 rounded-2xl border border-blue-500/30 text-center relative overflow-hidden group hover:border-blue-500/50 transition-colors">
@@ -127,11 +130,78 @@ const CarAvailability: React.FC = () => {
                   </p>
                 </div>
               )}
+
+              {/* Lists Section */}
+              <div className="pt-8 border-t border-slate-700/50">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  {/* Attendees List - Takes up 2 columns */}
+                  <div className="lg:col-span-2">
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                      <span className="text-green-400">✅</span> Lista de Confirmados
+                    </h3>
+                    <div className="bg-slate-900/50 rounded-xl border border-slate-700 overflow-hidden">
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left">
+                          <thead className="bg-slate-800/80 text-gray-400 text-xs uppercase tracking-wider">
+                            <tr>
+                              <th className="px-6 py-4 font-medium">Nombre</th>
+                              <th className="px-6 py-4 font-medium text-center">Transporte</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-700/50">
+                            {attendees.length > 0 ? (
+                              attendees.map((person) => (
+                                <tr key={person.id} className="hover:bg-slate-800/30 transition-colors">
+                                  <td className="px-6 py-4 text-gray-200 font-medium">
+                                    {person.nombre} {person.apellidos}
+                                  </td>
+                                  <td className="px-6 py-4 text-center">
+                                    {person.coche ? (
+                                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold">
+                                        🚗 Lleva Auto
+                                      </span>
+                                    ) : (
+                                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-700/50 text-slate-400 text-xs">
+                                        👤 Pasajero
+                                      </span>
+                                    )}
+                                  </td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan={2} className="px-6 py-8 text-center text-gray-500 italic">
+                                  Aún no hay confirmados.
+                                </td>
+                              </tr>
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Non-Attendees Summary Card - Takes up 1 column */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                      <span className="text-red-400">❌</span> No Asistirán
+                    </h3>
+                    <div className="bg-slate-900/50 p-8 rounded-xl border border-red-500/30 text-center relative overflow-hidden group hover:border-red-500/50 transition-colors">
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full blur-2xl -mr-12 -mt-12"></div>
+                      <p className="text-gray-400 mb-2">Se lo pierden</p>
+                      <p className="text-6xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+                        {nonAttendees.length}
+                      </p>
+                      <p className="text-red-300/60 text-sm">Personas no pueden ir</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
           <button
             onClick={fetchConfirmations}
-            className="mt-6 w-full px-6 py-3 bg-blue-600 text-white font-bold rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 disabled:opacity-50"
+            className="mt-8 w-full px-6 py-4 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 transform hover:-translate-y-1"
             disabled={loading}
           >
             Actualizar Datos
