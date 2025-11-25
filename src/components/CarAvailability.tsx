@@ -20,6 +20,10 @@ const CarAvailability: React.FC = () => {
   const [confirmations, setConfirmations] = useState<Confirmation[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [showPasswordModal, setShowPasswordModal] = useState<boolean>(false);
+  const [showListModal, setShowListModal] = useState<boolean>(false);
+  const [passwordInput, setPasswordInput] = useState<string>('');
+  const [passwordError, setPasswordError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchConfirmations();
@@ -39,6 +43,21 @@ const CarAvailability: React.FC = () => {
       setConfirmations(data || []);
     }
     setLoading(false);
+  };
+
+  const handleNonAttendeeClick = () => {
+    setShowPasswordModal(true);
+    setPasswordInput('');
+    setPasswordError(null);
+  };
+
+  const verifyPassword = () => {
+    if (passwordInput === 'Hugo9531') {
+      setShowPasswordModal(false);
+      setShowListModal(true);
+    } else {
+      setPasswordError('Contraseña incorrecta');
+    }
   };
 
   const attendees = confirmations.filter(c => c.va);
@@ -186,13 +205,17 @@ const CarAvailability: React.FC = () => {
                     <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                       <span className="text-red-400">❌</span> No Asistirán
                     </h3>
-                    <div className="bg-slate-900/50 p-8 rounded-xl border border-red-500/30 text-center relative overflow-hidden group hover:border-red-500/50 transition-colors">
+                    <div
+                      onClick={handleNonAttendeeClick}
+                      className="bg-slate-900/50 p-8 rounded-xl border border-red-500/30 text-center relative overflow-hidden group hover:border-red-500/50 transition-colors cursor-pointer"
+                    >
                       <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full blur-2xl -mr-12 -mt-12"></div>
                       <p className="text-gray-400 mb-2">Se lo pierden</p>
                       <p className="text-6xl font-extrabold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                         {nonAttendees.length}
                       </p>
                       <p className="text-red-300/60 text-sm">Personas no pueden ir</p>
+                      <p className="text-xs text-gray-500 mt-4">(Click para ver lista)</p>
                     </div>
                   </div>
                 </div>
@@ -208,7 +231,87 @@ const CarAvailability: React.FC = () => {
           </button>
         </div>
       </div>
-    </section >
+
+      {/* Password Modal */}
+      {showPasswordModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="bg-slate-900 border border-slate-700 p-8 rounded-2xl shadow-2xl max-w-md w-full relative">
+            <button
+              onClick={() => setShowPasswordModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+            >
+              ✕
+            </button>
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">Acceso Restringido</h3>
+            <p className="text-gray-400 mb-4 text-center">Ingresa la contraseña para ver la lista.</p>
+            <input
+              type="password"
+              value={passwordInput}
+              onChange={(e) => setPasswordInput(e.target.value)}
+              className="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white mb-4 focus:border-amber-500 focus:outline-none"
+              placeholder="Contraseña"
+              onKeyDown={(e) => e.key === 'Enter' && verifyPassword()}
+            />
+            {passwordError && <p className="text-red-400 text-sm mb-4 text-center">{passwordError}</p>}
+            <button
+              onClick={verifyPassword}
+              className="w-full py-3 bg-amber-600 text-white font-bold rounded-lg hover:bg-amber-500 transition-colors"
+            >
+              Ver Lista
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Non-Attendees List Modal */}
+      {showListModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col relative">
+            <div className="p-6 border-b border-slate-700 flex justify-between items-center">
+              <h3 className="text-2xl font-bold text-red-400">Lista de No Asistentes</h3>
+              <button
+                onClick={() => setShowListModal(false)}
+                className="text-gray-400 hover:text-white text-xl"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="p-0 overflow-y-auto">
+              <table className="w-full text-left">
+                <thead className="bg-slate-800/80 text-gray-400 text-xs uppercase tracking-wider sticky top-0">
+                  <tr>
+                    <th className="px-6 py-4 font-medium">Nombre</th>
+                    <th className="px-6 py-4 font-medium text-right">Estado</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-700/50">
+                  {nonAttendees.length > 0 ? (
+                    nonAttendees.map((person) => (
+                      <tr key={person.id} className="hover:bg-slate-800/30 transition-colors">
+                        <td className="px-6 py-4 text-gray-400">
+                          {person.nombre} {person.apellidos}
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-bold">
+                            No va
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={2} className="px-6 py-8 text-center text-gray-500 italic">
+                        Nadie ha cancelado aún.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
   );
 };
 
